@@ -1,16 +1,47 @@
-# This is a sample Python script.
-
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+import streamlit as st
+import time
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+st.header("Hello world!")
+
+st.button("Click me please!")
+
+st.text_input(
+    "Write your API KEY",
+    max_chars=20,
+)
+
+st.feedback("faces")
+
+with st.sidebar:
+    st.badge("Badge 1")
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+tab1, tab2, tab3 = st.tabs(["Agent", "Chat", "Outpu"])
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+with tab1:
+    st.header("Agent")
+with tab2:
+    st.header("Agent 2")
+with tab3:
+    st.header("Agent 3")
+
+
+with st.chat_message("ai"):
+    st.text("Hello!")
+    with st.status("Agent is using tool") as status:
+        time.sleep(1)
+        status.update(label="Agent is searching the web....")
+        time.sleep(2)
+        status.update(label="Agent is reading the page....")
+        time.sleep(3)
+        status.update(state="complete")
+
+with st.chat_message("human"):
+    st.text("Hi!")
+
+
+st.chat_input(
+    "Write a message for the assistant.",
+    accept_file=True,
+)
