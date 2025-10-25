@@ -47,8 +47,9 @@ def dynamic_triage_agent_instructions(
         agent: Agent[UserAccountContext],
 ):
     return f"""
-    {RECOMMENDED_PROMPT_PREFIX}
+    SPEAK TO THE USER IN ENGLISH
 
+    {RECOMMENDED_PROMPT_PREFIX}
 
     You are a customer support agent. You ONLY help customers with their questions about their User Account, Billing, Orders, or Technical Support.
     You call customers by their name.
@@ -130,9 +131,9 @@ def make_handoff(agent):
 triage_agent = Agent(
     name="Triage Agent",
     instructions=dynamic_triage_agent_instructions,
-    input_guardrails=[
-        off_topic_guardrail,
-    ],
+    # input_guardrails=[
+    #     # off_topic_guardrail,
+    # ],
     # tools=[
     #     technical_agent.as_tool(
     #         tool_name="Technical Help Tool",
